@@ -38,29 +38,15 @@ public class FrequencyTable {
     }
 
 
-    public void buldHuffmanTree() {
-
-        while (forest.size() > 1) {
-            int min1 = findMinimumFrequency();
-            Node left = forest.get(min1);
-            forest.remove(min1);
-
-            int min2 = findMinimumFrequency();
-            Node right = forest.get(min2);
-            forest.remove(min2);
-
-            Node parent = new Node(null);
-            parent.left = left;
-            parent.right = right;
-            parent.frequency = left.frequency + right.frequency;
-
-            forest.add(parent);
-        }
-    }
-
-
 
     // HELPER METHODS
+
+    /**
+     * A method to check if the Huffman Frequency Table contains particular character.
+     *
+     * @param ch - character to check if it exist in the list.
+     * @return - returns true if character exists, otherwise false.
+     */
     private boolean containsCharacter(Character ch) {
 
         for (int i = 0; i < forest.size(); i ++) {
@@ -73,6 +59,11 @@ public class FrequencyTable {
     }
 
 
+    /**
+     * A method to update frequency by 1 for particular character in Huffman Frequency Table.
+     *
+     * @param ch - the character to update frequency.
+     */
     private void updateFrequency(Character ch) {
 
         for (int i = 0; i < forest.size(); i++) {
@@ -86,6 +77,11 @@ public class FrequencyTable {
     }
 
 
+    /**
+     * A method to add new character to the Huffman Frequency Table and set its frequency to 1.
+     *
+     * @param ch - new character to add to Huffman Frequency Table.
+     */
     private void addFrequency(Character ch) {
 
         Node node = new Node(ch);
@@ -94,29 +90,19 @@ public class FrequencyTable {
 
 
     /**
-     * A method to find the Node with the minimum Huffman Code frequency value.
-     *
-     * @return - returns the index of the node with the minim frequency value.
+     * A helper method to print content of Huffman Frequency Table.
      */
-    public int findMinimumFrequency() {
-
-        int min = 0;
-
-        for (int i = 1; i < forest.size(); i++) {
-            if (forest.get(i).frequency < forest.get(min).frequency)
-                min = i;
-        }
-
-        return min;
-    }
-
-
     public void printFrequencyTable() {
 
         for (int i = 0; i < forest.size(); i++) {
             System.out.println(forest.get(i).data + " : " + forest.get(i).frequency);
         }
 
+    }
+
+
+    public List<Node> getFrequencyTable() {
+        return forest;
     }
 
 }
