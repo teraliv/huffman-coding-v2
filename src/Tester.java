@@ -1,3 +1,5 @@
+import java.util.ArrayList;
+import java.util.List;
 
 public class Tester {
 
@@ -5,7 +7,13 @@ public class Tester {
         FrequencyTable ft = new FrequencyTable();
 
         ft.buildFrequencyTable("My test works totaly fine");
-        ft.printFrequencyTable();
+        //ft.printFrequencyTable();
+
+        //System.out.println("--------");
+        //ft.buldHuffmanTree();
+        //ft.printFrequencyTable();
+
+
     }
 
 }
