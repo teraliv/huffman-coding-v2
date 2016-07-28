@@ -6,8 +6,12 @@ public class HuffmanTree {
     private List<Node> forest;
 
 
+    /**
+     * Construct a Huffman Tree based on the forest of single Huffman Nodes.
+     *
+     * @param forest - a list of single Huffman Nodes.
+     */
     public HuffmanTree(List<Node> forest) {
-
         this.forest = forest;
         buildHuffmanTree();
         root = forest.get(0);
@@ -17,16 +21,22 @@ public class HuffmanTree {
 
     /**
      * This method builds a Huffman Tree based on the forest of single Nodes.
+     * 1. - find two minimum nodes and create a subtree with the value of the sum of these two nodes.
+     * 2. - remove these two nodes from the list.
+     * 3. - add a subtree to the list.
+     * 4. - repeat this process while there is just one element in the list.
      */
     public void buildHuffmanTree() {
 
         while (forest.size() > 1) {
             int min1 = findMinimumFrequency();
             Node left = forest.get(min1);
+            left.edge = 0;
             forest.remove(min1);
 
             int min2 = findMinimumFrequency();
             Node right = forest.get(min2);
+            right.edge = 1;
             forest.remove(min2);
 
             Node parent = new Node(null);
@@ -57,7 +67,11 @@ public class HuffmanTree {
         return min;
     }
 
-
+    /**
+     * This method returns the root element of Huffman Tree.
+     *
+     * @return - the root of a Huffman Tree.
+     */
     public Node getRoot() {
         return root;
     }
