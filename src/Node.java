@@ -15,6 +15,9 @@ public class Node {
 
     /**
      * Constructs new Huffman Tree Node and initializes values.
+     * There are two types of nodes:
+     * 1 - A node with character data means the node is the leaf.
+     * 2 - A node with null data means a parent node.
      *
      * @param data - character that the node will contain.
      */

@@ -16,6 +16,11 @@ public class Decoder {
      * @param bitstream - bit codes of encoded text.
      */
     public Decoder(Node tree, String bitstream) {
+
+        // check null condition
+        if (tree == null || bitstream == null)
+            throw new NullPointerException("Missing Huffman Tree or bit stream");
+
         this.bitstream = bitstream;
         decodedText = decodeBitStream(tree);
     }
@@ -65,6 +70,10 @@ public class Decoder {
      * @param writer - writes data into output text file.
      */
     public void printDecodedText(PrintWriter writer) {
+
+        if (writer == null)
+            throw new NullPointerException("Missing writer object");
+
         String output = String.format("\n%s %s\n", "Decoded String: ", decodedText);
 
         System.out.println(output);

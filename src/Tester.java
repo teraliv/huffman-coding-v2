@@ -8,13 +8,17 @@ public class Tester {
 
         String message = null;
 
-        // check if there is an input text in command line arguments
+        // checking command line arguments
         if (args.length == 0) {
-            System.out.println("Missing input message");
+            throw new IllegalArgumentException("Missing input text");
+        }
+        // input text should be at leas 2 characters
+        else if (args[0].length() < 2) {
+            System.out.println("Input text should be at leas 2 characters");
             System.exit(0);
         }
         else {
-            message = args[0];  // read input text from command line arguments
+            message = concatCommandLineArguments(args);
         }
 
 
@@ -44,8 +48,26 @@ public class Tester {
             if (writer != null)
                 writer.close();
         }
-
-
     }
 
+
+    /**
+     * A method to concatenate command line arguments to a string.
+     *
+     * @param args - command line arguments.
+     * @return - concatenated string.
+     */
+    private static String concatCommandLineArguments(String[] args) {
+        StringBuilder sb = new StringBuilder();
+
+        for (int i = 0; i < args.length; i++) {
+            sb.append(args[i]);
+
+            // do not append space at the end of the string
+            if (i < args.length - 1)
+                sb.append(' ');
+        }
+
+        return sb.toString();
+    }
 }

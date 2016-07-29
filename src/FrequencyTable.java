@@ -29,6 +29,8 @@ public class FrequencyTable {
      */
     public void buildFrequencyTable(String message) {
 
+        if (message == null) throw new NullPointerException("Input string is missing");
+
         Character ch;
 
         for (int i = 0; i < message.length(); i++) {

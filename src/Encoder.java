@@ -23,6 +23,11 @@ public class Encoder {
      * @param ft - Huffman Frequency table.
      */
     public Encoder(Node tree, FrequencyTable ft) {
+
+        // check null condition
+        if (tree == null || ft == null)
+            throw new NullPointerException("Missing Huffman Tree or Frequency Table");
+
         bits = new StringBuilder();
         codes = new HashMap<>();
         this.ft = ft;

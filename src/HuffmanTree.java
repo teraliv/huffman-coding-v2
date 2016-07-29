@@ -15,6 +15,15 @@ public class HuffmanTree {
      * @param forest - a list of single Huffman Nodes.
      */
     public HuffmanTree(List<Node> forest) {
+
+        // check list null condition
+        if (forest == null)
+            throw new NullPointerException("Missing list of nodes");
+        // check list empty condition
+        else if (forest.isEmpty())
+            throw new IllegalStateException("The list of forest is empty");
+
+        // initialize all values
         this.forest = forest;
         buildHuffmanTree();
         root = forest.get(0);
