@@ -2,7 +2,10 @@ import java.util.List;
 
 public class HuffmanTree {
 
+    // Root node of the Huffman Tree
     private Node root;
+
+    // A list of Huffman Tree Nodes
     private List<Node> forest;
 
 
@@ -15,7 +18,6 @@ public class HuffmanTree {
         this.forest = forest;
         buildHuffmanTree();
         root = forest.get(0);
-
     }
 
 
@@ -31,12 +33,10 @@ public class HuffmanTree {
         while (forest.size() > 1) {
             int min1 = findMinimumFrequency();
             Node left = forest.get(min1);
-            left.edge = 0;
             forest.remove(min1);
 
             int min2 = findMinimumFrequency();
             Node right = forest.get(min2);
-            right.edge = 1;
             forest.remove(min2);
 
             Node parent = new Node(null);
@@ -46,6 +46,16 @@ public class HuffmanTree {
 
             forest.add(parent);
         }
+    }
+
+
+    /**
+     * This method returns the root element of Huffman Tree.
+     *
+     * @return - the root of a Huffman Tree.
+     */
+    public Node getRoot() {
+        return root;
     }
 
 
@@ -65,15 +75,6 @@ public class HuffmanTree {
         }
 
         return min;
-    }
-
-    /**
-     * This method returns the root element of Huffman Tree.
-     *
-     * @return - the root of a Huffman Tree.
-     */
-    public Node getRoot() {
-        return root;
     }
 
 }

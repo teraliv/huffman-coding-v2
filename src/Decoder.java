@@ -1,14 +1,20 @@
+import java.io.PrintWriter;
 
 public class Decoder {
 
-    // A bit stream of encoded message
+    // A bit stream of encoded text
     private String bitstream;
 
-    // A decoded message
+    // A decoded text
     private String decodedText;
 
 
-    // Constructs a new decoder
+    /**
+     * Constructs a ned Huffmand Code decoder. Decoder decodes the bit stream into original message.
+     *
+     * @param tree - Huffman Tree.
+     * @param bitstream - bit codes of encoded text.
+     */
     public Decoder(Node tree, String bitstream) {
         this.bitstream = bitstream;
         decodedText = decodeBitStream(tree);
@@ -17,8 +23,8 @@ public class Decoder {
 
     /**
      * A method to decode a text based on the bit stream and Huffman Tree.
-     * @param tree - Huffman Tree
-     * @return - returns decoded message
+     * @param tree - Huffman Tree.
+     * @return - returns decoded message.
      */
     private String decodeBitStream(Node tree) {
 
@@ -52,12 +58,17 @@ public class Decoder {
         return decodedText.toString();
     }
 
-    
+
     /**
-     * A mthod just to print out decoded message.
+     * A method just to print out decoded message.
+     *
+     * @param writer - writes data into output text file.
      */
-    public void printDecodedText() {
-        System.out.printf("%s %s\n", "Decoded String: ", decodedText);
+    public void printDecodedText(PrintWriter writer) {
+        String output = String.format("\n%s %s\n", "Decoded String: ", decodedText);
+
+        System.out.println(output);
+        writer.println(output);
     }
 
 }
