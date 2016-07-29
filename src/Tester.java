@@ -10,8 +10,12 @@ public class Tester {
         //ft.printFrequencyTable();
 
         HuffmanTree tree = new HuffmanTree(ft.getFrequencyTable());
+
         Encoder encoder = new Encoder(tree.getRoot(), ft);
         encoder.printEncodedMessage(message);
+
+        Decoder decoder = new Decoder(tree.getRoot(), encoder.getEncodedText());
+        decoder.printDecodedText();
 
     }
 

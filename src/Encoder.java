@@ -11,6 +11,9 @@ public class Encoder {
     // A frequency table
     private FrequencyTable ft;
 
+    // An encoded text.
+    private String encodedText;
+
 
     public Encoder(Node tree, FrequencyTable ft) {
         bits = new StringBuilder();
@@ -58,6 +61,7 @@ public class Encoder {
         System.out.printf("%s %20s %10s\n", "char", "frequency", "code");
         System.out.println("------------------------------------------");
 
+        StringBuilder sb = new StringBuilder();     // string builder with encoded bit stream
         String occurrences = ft.getOccurrences();   // a string with unique character occurrences
         Character ch;
         int totalEncodedBits = 0;                   // total number of bits for encoded text.
@@ -70,7 +74,6 @@ public class Encoder {
             // '-' makes the result left-justified
             // 15 is the width of the first string
             System.out.printf("%-15c %-15d %s\n", ch, ft.getFrequency(ch),  codes.get(ch));
-
         }
         System.out.println("==========================================");
 
@@ -79,14 +82,27 @@ public class Encoder {
 
         // print out encoded bit stream and calculate total number of bits needed to encode input text
         for (int i = 0; i < message.length(); i++) {
-            ch = message.charAt(i);
-            totalEncodedBits += codes.get(ch).length();
+            ch = message.charAt(i);                         // current character from input text
+            totalEncodedBits += codes.get(ch).length();     // count bits
+            sb.append(codes.get(ch));                       // append bit codes
             System.out.print(codes.get(ch));
         }
 
-        System.out.printf("\n\n%s %d", "Total number of bits without Huffman coding: ", message.length() * 16);
-        System.out.printf("\n%s %d", "Total number of bits with Huffman coding: ", totalEncodedBits);
+        encodedText = sb.toString();
 
+        System.out.printf("\n\n%s %d", "Total number of bits without Huffman coding: ", message.length() * 16);
+        System.out.printf("\n%s %d\n", "Total number of bits with Huffman coding: ", totalEncodedBits);
+
+    }
+
+
+    /**
+     * A method to get encoded bit stream.
+     *
+     * @return - encoded message as bit stream.
+     */
+    public String getEncodedText() {
+        return encodedText;
     }
 
 }
